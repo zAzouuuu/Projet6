@@ -10,15 +10,8 @@ import paramiko
 from scp import SCPClient
 from datetime import timedelta
 
-def create(vars):
-
-try:
-	 with  tarfile.open (vars['local_path'] + "/" + vars['namedir'], 'w') as archive:
-		archive.add vars['save_path']
-except tarfile.CompressionError:
-	print (0)
-	exit (Compression)
-except tarfile.tarError:
-	print (1)
-	exit(tarError)
+ssh_client = paramiko.SSHClient()
+ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh_client.connect(hostname=['ip_address'],username=['name'],password=['passw'])
+sftp = ssh_client.open_sftp()
 
